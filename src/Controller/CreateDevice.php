@@ -7,6 +7,13 @@ use Symfony\Component\HttpFoundation\Request;
 
 class CreateDevice
 {
+    private $deviceRepository;
+
+    public function __construct()
+    {
+        $this->deviceRepository = new DeviceRepository();
+    }
+
     public function __invoke(Request $request): JsonResponse
     {
         $body = json_decode($request->getContent(), true);
@@ -16,6 +23,7 @@ class CreateDevice
         }
 
         $device = new Device($body['brand']);
+        $this->deviceRepository->create($device);
 
         return new JsonResponse($device->export());
     }
@@ -23,7 +31,17 @@ class CreateDevice
 
 class DeviceRepository
 {
+    private $devices;
 
+    public function __construct()
+    {
+        $this->devices = [];
+    }
+
+    public function create(Device $device): void
+    {
+        $this->devices[$device->id()] = $device;
+    }
 }
 
 class Device
@@ -35,6 +53,11 @@ class Device
     {
         $this->id = rand(0, 500);
         $this->brand = $brand;
+    }
+
+    public function id(): int
+    {
+        return $this->id;
     }
 
     public function export(): array
