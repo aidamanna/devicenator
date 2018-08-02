@@ -1,5 +1,5 @@
 create_device:
     path: /devices
     methods: [POST]
-    controller: App\Controller\CreateDevice::__invoke
+    controller: App\Infrastructure\Http\CreateDevice::__invoke
 
