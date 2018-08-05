@@ -2,4 +2,12 @@ create_device:
     path: /devices
     methods: [POST]
     controller: App\Infrastructure\Http\CreateDevice::__invoke
-
+read_device:
+    path: /devices/{id}
+    methods: [GET]
+    controller: App\Infrastructure\Http\GetDevice::__invoke
+list_devices:
+    path: /devices
+    methods: [GET]
+    controller: App\Infrastructure\Http\ListDevices::__invoke
+    
