@@ -2,12 +2,14 @@
 
 namespace App\Domain;
 
+use Ulid\Ulid;
+
 class Device
 {
     private $id;
     private $brand;
 
-    public function __construct(int $id, string $brand)
+    public function __construct(string $id, string $brand)
     {
         $this->id = $id;
         $this->brand = $brand;
@@ -15,10 +17,10 @@ class Device
 
     public static function create(string $brand): self
     {
-        return new self(rand(0, 500), $brand);
+        return new self(Ulid::generate(), $brand);
     }
 
-    public function id(): int
+    public function id(): string
     {
         return $this->id;
     }

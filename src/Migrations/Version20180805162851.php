@@ -9,7 +9,7 @@ final class Version20180805162851 extends AbstractMigration
 {
     public function up(Schema $schema) : void
     {
-        $this->addSql('CREATE TABLE devices (id INT NOT NULL UNIQUE, brand VARCHAR(255) NOT NULL)');
+        $this->addSql('CREATE TABLE devices (id VARCHAR(26) NOT NULL UNIQUE, brand VARCHAR(255) NOT NULL)');
     }
 
     public function down(Schema $schema) : void

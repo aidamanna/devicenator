@@ -20,17 +20,17 @@ class MySqlDeviceRepository
         $sql = 'INSERT INTO devices (id, brand) VALUES (:id, :brand)';
 
         $statement = $this->connection->prepare($sql);
-        $statement->bindValue(':id', $device->id(), PDO::PARAM_INT);
+        $statement->bindValue(':id', $device->id(), PDO::PARAM_STR);
         $statement->bindValue(':brand', $device->brand(), PDO::PARAM_STR);
         $statement->execute();
     }
 
-    public function getById($id): Device
+    public function getById(string $id): Device
     {
         $sql = 'SELECT id, brand FROM devices WHERE id=:id';
 
         $statement = $this->connection->prepare($sql);
-        $statement->bindValue(':id', $id, PDO::PARAM_INT);
+        $statement->bindValue(':id', $id, PDO::PARAM_STR);
         $statement->execute();
 
         $record = $statement->fetch();

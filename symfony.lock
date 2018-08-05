@@ -74,6 +74,9 @@
     "ocramius/proxy-manager": {
         "version": "2.2.0"
     },
+    "paragonie/random_compat": {
+        "version": "v2.0.17"
+    },
     "psr/cache": {
         "version": "1.0.1"
     },
@@ -85,6 +88,9 @@
     },
     "psr/simple-cache": {
         "version": "1.0.1"
+    },
+    "robinvdvleuten/ulid": {
+        "version": "v1.1.0"
     },
     "symfony/cache": {
         "version": "v4.1.2"
