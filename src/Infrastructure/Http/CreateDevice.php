@@ -3,7 +3,7 @@
 namespace App\Infrastructure\Http;
 
 use App\Domain\Device;
-use App\Infrastructure\Persistence\InMemoryDeviceRepository;
+use App\Infrastructure\Persistence\MySqlDeviceRepository;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -11,7 +11,7 @@ class CreateDevice
 {
     private $deviceRepository;
 
-    public function __construct(InMemoryDeviceRepository $deviceRepository)
+    public function __construct(MySqlDeviceRepository $deviceRepository)
     {
         $this->deviceRepository = $deviceRepository;
     }
@@ -24,7 +24,7 @@ class CreateDevice
             return new JsonResponse(['error'=>'Missing required field: brand'], 400);
         }
 
-        $device = new Device($body['brand']);
+        $device = Device::create($body['brand']);
         $this->deviceRepository->create($device);
 
         return new JsonResponse($device->export());
