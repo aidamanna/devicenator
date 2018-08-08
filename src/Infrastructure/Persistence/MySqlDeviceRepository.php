@@ -3,10 +3,11 @@
 namespace App\Infrastructure\Persistence;
 
 use App\Domain\Device;
+use App\Domain\DeviceRepository;
 use Doctrine\DBAL\Driver\Connection;
 use PDO;
 
-class MySqlDeviceRepository
+class MySqlDeviceRepository implements DeviceRepository
 {
     private $connection;
 
