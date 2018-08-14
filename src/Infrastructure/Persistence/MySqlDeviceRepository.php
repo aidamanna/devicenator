@@ -4,6 +4,7 @@ namespace App\Infrastructure\Persistence;
 
 use App\Domain\Device;
 use App\Domain\DeviceRepository;
+use App\Domain\UnknownDeviceId;
 use Doctrine\DBAL\Driver\Connection;
 use PDO;
 
@@ -35,6 +36,10 @@ class MySqlDeviceRepository implements DeviceRepository
         $statement->execute();
 
         $record = $statement->fetch();
+
+        if ($record === false) {
+            throw new UnknownDeviceId();
+        }
 
         return new Device($record['id'], $record['brand']);
     }

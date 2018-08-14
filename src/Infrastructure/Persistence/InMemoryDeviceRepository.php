@@ -5,6 +5,7 @@ namespace App\Infrastructure\Persistence;
 
 use App\Domain\Device;
 use App\Domain\DeviceRepository;
+use App\Domain\UnknownDeviceId;
 
 class InMemoryDeviceRepository implements DeviceRepository
 {
@@ -23,8 +24,11 @@ class InMemoryDeviceRepository implements DeviceRepository
     public function getById(string $id): Device
     {
         foreach ($this->devices as $device) {
-            if ($device->id() == $id) return $device;
+            if ($device->id() == $id) {
+                return $device;
+            }
         }
+        throw new UnknownDeviceId();
     }
 
     public function list(): array
