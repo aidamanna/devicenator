@@ -6,6 +6,7 @@ use App\Domain\Device;
 use App\Domain\DeviceRepository;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class CreateDevice
 {
@@ -21,7 +22,7 @@ class CreateDevice
         $body = json_decode($request->getContent(), true);
 
         if (empty($body['brand'])) {
-            return new JsonResponse(['error'=>'Missing required field: brand'], 400);
+            return new JsonResponse(['error'=>'Missing required field: brand'], Response::HTTP_BAD_REQUEST);
         }
 
         $device = Device::create($body['brand']);
