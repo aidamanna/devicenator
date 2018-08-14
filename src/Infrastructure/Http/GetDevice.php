@@ -3,7 +3,7 @@
 namespace App\Infrastructure\Http;
 
 
-use App\Infrastructure\Persistence\MySqlDeviceRepository;
+use App\Domain\DeviceRepository;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -11,7 +11,7 @@ class GetDevice
 {
     private $deviceRepository;
 
-    public function __construct(MySqlDeviceRepository $deviceRepository)
+    public function __construct(DeviceRepository $deviceRepository)
     {
         $this->deviceRepository = $deviceRepository;
     }
